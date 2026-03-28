@@ -1,0 +1,3 @@
+- [x] Fix JSX structure in admin/src/Components/AddProduct/AddProduct.jsx: add missing closing div, correct indentation, move input inside the itemfield div.
+- [x] Standardize className attributes by removing spaces before =.
+- [ ] Verify the component renders correctly.

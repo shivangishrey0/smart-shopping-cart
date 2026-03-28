@@ -1,0 +1,112 @@
+.list-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 740px;
+    padding: 10px 50px;
+    margin: 30px;
+    border-radius: 16px;
+    /* Very light violet gradient (near-white) */
+    background: linear-gradient(135deg, #ffffff 82%, #fcf7ff 100%);
+    box-shadow: 0 4px 20px rgba(167,139,250,0.18);
+    color: #4c1d95; /* darker violet for readable contrast */
+}
+
+.listproduct-format-main {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+    padding: 20px 0;
+    color: #4c1d95;
+    font-size: 16px;
+    font-weight: 700;
+    /* Pale header to match very light theme */
+    background: linear-gradient(180deg, #fbf8ff 0%, #f3e8ff 100%);
+    border-radius: 10px 10px 0 0;
+}
+
+.listproduct-format {
+    align-items: center;
+    font-weight: 500;
+}
+
+.listproduct-header {
+    border-bottom: 2px solid #a78bfa;
+}
+
+.listproduct-product-icon {
+    height: 80px;
+    width: 80px;
+    object-fit: cover;
+}
+
+.listproduct-remove-icon {
+    cursor: pointer;
+    margin: auto;
+    width: 25px;
+}
+
+.listproduct-allproducts {
+    overflow-y: auto;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.listproduct-allproducts::-webkit-scrollbar {
+    width: 6px;
+}
+.listproduct-allproducts::-webkit-scrollbar-thumb {
+    background: #a78bfa;
+    border-radius: 6px;
+}
+/* Statistics block for admin dashboard */
+.admin-stats-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    /* Very pale violet base */
+    background: linear-gradient(135deg, #ffffff 82%, #fcf7ff 100%);
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(167,139,250,0.14);
+    padding: 2rem 1.5rem;
+    margin: 2rem 0;
+}
+.admin-stats-block .stat-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 1.5rem;
+    filter: drop-shadow(0 2px 8px #a78bfa88);
+}
+.admin-stats-block .stat-info {
+    text-align: left;
+}
+.admin-stats-block .stat-title {
+    font-size: 1.2rem;
+    color: #a78bfa;
+    font-weight: 600;
+}
+.admin-stats-block .stat-value {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+@media (max-width: 800px) {
+    .list-product {
+        box-sizing: border-box;
+        width: 95%;
+        height: 100%;
+        padding: 10px 30px;
+        margin: 20px auto;
+    }
+
+    .listproduct-format-main {
+        padding: 15px 0;
+        color: #454545;
+        font-size: 12px;
+    }
+}

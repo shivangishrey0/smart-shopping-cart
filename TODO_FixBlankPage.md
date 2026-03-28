@@ -1,0 +1,4 @@
+- [ ] Fix missing imports in Admin.jsx for AddProduct and ListProduct
+- [ ] Add Routes in App.jsx for nested routing
+- [ ] Enhance AddProduct.jsx with full form fields (description, category, image, submit)
+- [ ] Run dev server to test

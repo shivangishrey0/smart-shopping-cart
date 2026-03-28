@@ -1,0 +1,2 @@
+- [x] Fix syntax errors in admin/src/Components/Navbar/Navbar.jsx by adding spaces between attributes in img tags.
+- [ ] Run the development server to verify the fix and check for any other errors.

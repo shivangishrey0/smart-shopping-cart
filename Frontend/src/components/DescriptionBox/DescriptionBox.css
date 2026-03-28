@@ -1,0 +1,110 @@
+.descriptionbox {
+  margin: 40px auto;
+  padding: 0 20px;
+  max-width: 1000px;
+  box-sizing: border-box;
+}
+
+.descriptionbox .card {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(30, 30, 30, 0.06);
+  overflow: hidden;
+}
+
+/* Top navigation section */
+.descriptionbox-navigator {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+
+.descriptionbox-nav-box {
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #333;
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.descriptionbox-nav-box:hover {
+  background: #f3f3f3;
+}
+
+.descriptionbox-nav-box.fade {
+  background: transparent;
+  color: #888;
+}
+
+/* Content area */
+.descriptionbox-description {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 32px;
+  line-height: 1.6;
+  color: #444;
+  font-size: 15px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.descriptionbox-description p {
+  margin: 0;
+}
+
+/* --------------------- RESPONSIVE DESIGN --------------------- */
+
+/* Medium screens (tablets) */
+@media (max-width: 900px) {
+  .descriptionbox {
+    margin: 24px auto;
+    padding: 0 16px;
+  }
+  .descriptionbox-description {
+    padding: 20px 24px;
+    font-size: 14.5px;
+  }
+}
+
+/* Small screens (mobiles) */
+@media (max-width: 600px) {
+  .descriptionbox-navigator {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 15px;
+    padding: 10px 14px;
+    gap: 4px;
+  }
+  .descriptionbox-nav-box {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+  }
+  .descriptionbox-description {
+    padding: 16px 18px;
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+  .descriptionbox-description {
+    font-size: 13.5px;
+    padding: 14px 16px;
+  }
+  .descriptionbox-nav-box {
+    font-size: 13px;
+    padding: 8px 0;
+  }
+}

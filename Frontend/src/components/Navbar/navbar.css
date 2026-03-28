@@ -1,0 +1,231 @@
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  box-shadow: 0 1px 3px -2px black;
+  position: relative;
+  background-color: white;
+  z-index: 100;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo p {
+  color: #171717;
+  font-size: 38px;
+  font-weight: 600;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 50px;
+  color: #626262;
+  font-size: 20px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.nav-menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  gap: 3px;
+}
+
+.nav-menu hr {
+  border: none;
+  width: 80%;
+  height: 3px;
+  border-radius: 10px;
+  background: #ff4141;
+}
+
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 45px;
+}
+
+.nav-login-cart button {
+  width: 157px;
+  height: 58px;
+  outline: none;
+  border: 1px solid #7a7a7a;
+  border-radius: 75px;
+  color: #515151;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: white;
+  cursor: pointer;
+}
+
+.nav-login-cart button:active {
+  background-color: #f0f0f0;
+}
+
+.nav-login-cart .nav-cart-count {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -35px;
+  margin-left: -55px;
+  border-radius: 11px;
+  font-size: 14px;
+  background: red;
+  color: white;
+}
+
+.nav-dropdown {
+  display: none;
+}
+
+/* User Avatar Section */
+.nav-user-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff4141, #ff6b6b);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(255, 65, 65, 0.3);
+  flex-shrink: 0;
+}
+
+.nav-logout-btn {
+  width: auto !important;
+  padding: 0 20px !important;
+  height: 42px !important;
+  background: white !important;
+  color: #ff4141 !important;
+  border: 2px solid #ff4141 !important;
+  border-radius: 75px !important;
+  font-size: 15px !important;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.nav-logout-btn:hover {
+  background: #ff4141 !important;
+  color: white !important;
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 1024px) {
+  .navbar {
+    justify-content: space-between;
+    padding: 12px 30px;
+  }
+
+  .nav-logo p {
+    font-size: 25px;
+  }
+
+  .nav-menu {
+    gap: 25px;
+    font-size: 16px;
+  }
+
+  .nav-login-cart button {
+    width: 120px;
+    height: 45px;
+    font-size: 16px;
+  }
+
+  .nav-login-cart img {
+    width: 30px;
+  }
+
+  .nav-cart-count {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-dropdown {
+    display: block;
+    width: 30px;
+    transform: rotate(-90deg);
+    transition: transform 0.5s;
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #ccc;
+    padding: 15px 0;
+    z-index: 50;
+    /* Keep items in a row with proper spacing */
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  /* Make the menu visible when the toggle class is present */
+  .nav-dropdown.open {
+    transform: rotate(0deg);
+  }
+  
+  .nav-menu-visible {
+    display: flex;
+    /* Ensure horizontal layout */
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  /* Adjust list items for horizontal layout */
+  .nav-menu.nav-menu-visible li {
+    flex-direction: column;
+    margin: 0 10px;
+  }
+}
+
+@media (max-width:500px)
+{
+  .navbar{
+    width: 8px 0px;
+    gap:0;
+
+  }
+  .nav-logo{
+    transform:scale(0.8);
+  }
+  .nav-menu{
+    height:70px;
+    top:50px;
+
+  }
+  .nav-login-cart{
+       transform:scale(0.8);
+  }
+}

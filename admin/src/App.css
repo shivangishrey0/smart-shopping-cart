@@ -1,0 +1,95 @@
+
+:root {
+  --violet-main: #a78bfa;
+  --violet-dark: #7c3aed;
+  --violet-light: #f3e8ff;
+  --violet-gradient: linear-gradient(135deg, #ede9fe 0%, #a78bfa 100%);
+  --violet-accent: #c4b5fd;
+  --text-dark: #2d2d2d;
+  --text-light: #fff;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background: var(--violet-gradient);
+  min-height: 100vh;
+  color: var(--text-dark);
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+
+.card {
+  padding: 2em;
+  background: #f3e8ff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #a78bfa33;
+  color: #2d2d2d;
+  margin-bottom: 2rem;
+}
+
+/* Statistics block styles */
+.stats-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  background: linear-gradient(90deg, #ede9fe 60%, #c4b5fd 100%);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #a78bfa33;
+  padding: 2rem 1.5rem;
+  margin: 2rem 0;
+}
+.stats-block .stat-img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  margin-right: 1.5rem;
+  filter: drop-shadow(0 2px 8px #a78bfa88);
+}
+.stats-block .stat-info {
+  text-align: left;
+}
+.stats-block .stat-title {
+  font-size: 1.2rem;
+  color: #7c3aed;
+  font-weight: 600;
+}
+.stats-block .stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #5b21b6;
+}
+
+.read-the-docs {
+  color: #888;
+}
