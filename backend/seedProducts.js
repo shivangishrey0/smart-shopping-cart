@@ -1,9 +1,16 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 
 // Connect to your database
-mongoose.connect("mongodb+srv://shival:shivangi20@cluster20.tkkat9n.mongodb.net/e-commerce")
+const mongoUrl = process.env.MONGODB_URL;
+
+if (!mongoUrl) {
+  throw new Error("MONGODB_URL is not set in the environment");
+}
+
+mongoose.connect(mongoUrl)
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => {
     console.error("❌ MongoDB Connection Error:", err);

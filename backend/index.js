@@ -11,6 +11,8 @@ const fs = require("fs");
 const nodemailer = require("nodemailer");
 const { Cashfree, CFEnvironment } = require("cashfree-pg");
 
+const CASHFREE_API_VERSION = "2022-09-01";
+
 // Cashfree Configuration
 Cashfree.XClientId = process.env.CASHFREE_APP_ID;
 Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY;
@@ -34,7 +36,13 @@ const transporter = nodemailer.createTransport({
 const otpStore = new Map();
 
 //  MongoDB Connection
-mongoose.connect("mongodb+srv://shival:shivangi20@cluster20.tkkat9n.mongodb.net/e-commerce")
+const mongoUrl = process.env.MONGODB_URL;
+
+if (!mongoUrl) {
+  throw new Error("MONGODB_URL is not set in the environment");
+}
+
+mongoose.connect(mongoUrl)
   .then(() => console.log(" MongoDB Connected"))
   .catch(err => console.log(" MongoDB Connection Error:", err));
 
@@ -495,13 +503,27 @@ app.post('/create-cashfree-order', fetchUser, async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' });
     }
 
+    if (!process.env.CASHFREE_APP_ID || !process.env.CASHFREE_SECRET_KEY) {
+      return res.status(500).json({ success: false, message: 'Cashfree credentials are not configured on server' });
+    }
+
+    const amount = Number(totalAmount || order.totalAmount);
+    if (!Number.isFinite(amount) || amount <= 0) {
+      return res.status(400).json({ success: false, message: 'Invalid order amount' });
+    }
+
+    const phoneDigits = String(order.deliveryAddress.phone || '').replace(/\D/g, '');
+    if (phoneDigits.length !== 10) {
+      return res.status(400).json({ success: false, message: 'Customer phone must be exactly 10 digits' });
+    }
+
     const request = {
-      order_amount: totalAmount,
+      order_amount: amount,
       order_currency: "INR",
       order_id: "cf_" + orderId,
       customer_details: {
         customer_id: req.user.id,
-        customer_phone: order.deliveryAddress.phone,
+        customer_phone: phoneDigits,
         customer_name: user.name || order.deliveryAddress.fullName,
         customer_email: user.email
       },
@@ -510,7 +532,7 @@ app.post('/create-cashfree-order', fetchUser, async (req, res) => {
       }
     };
 
-    const response = await Cashfree.PGCreateOrder("2025-01-01", request);
+    const response = await Cashfree.PGCreateOrder(CASHFREE_API_VERSION, request);
     console.log('Cashfree order created:', response.data.cf_order_id);
 
     res.json({
@@ -519,8 +541,12 @@ app.post('/create-cashfree-order', fetchUser, async (req, res) => {
       cf_order_id: response.data.cf_order_id
     });
   } catch (error) {
-    console.error('Cashfree create order error:', error?.response?.data || error);
-    res.status(500).json({ success: false, message: 'Failed to create payment session' });
+    const cashfreeError = error?.response?.data;
+    console.error('Cashfree create order error:', cashfreeError || error);
+    res.status(500).json({
+      success: false,
+      message: cashfreeError?.message || cashfreeError?.type || 'Failed to create payment session'
+    });
   }
 });
 
@@ -535,7 +561,7 @@ app.post('/verify-payment', fetchUser, async (req, res) => {
 
     const cfOrderId = "cf_" + orderId;
 
-    const response = await Cashfree.PGOrderFetchPayments("2025-01-01", cfOrderId);
+    const response = await Cashfree.PGOrderFetchPayments(CASHFREE_API_VERSION, cfOrderId);
     const payments = response.data;
 
     if (payments && payments.length > 0) {
